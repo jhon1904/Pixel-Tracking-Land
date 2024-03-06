@@ -1,0 +1,53 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.container {
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.wallet {
+    text-align: center;
+   
+   
+    
+
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: small;
+}
+
+
+
+.container > button {
+    display: flex;
+    align-items: center;
+    padding: .2rem 1rem;
+    margin: auto;
+    font-weight: 100;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: #1f61dbe7;
+    color: #fff;
+    border-radius: 2rem;
+    outline: none;
+    border: none;
+    transition: all .3s ease-in-out;
+}
+
+.container > button:hover {
+    background-color: #6f92d4e7;
+}
+
+.container i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+    color: #fff;
+}
+
