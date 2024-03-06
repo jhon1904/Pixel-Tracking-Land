@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixel Tracking Land</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <meta name="description" content="your favorite lands in the palm of your hand!">
+</head>
+
+<style>
+    body {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        background-color: black;
+        color: white;
+        font-weight: 800;
+    }
+    input:hover, label:hover, button{
+        cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=), auto;
+    }
+
+
+    .iframeDiv{
+        padding-bottom:38vh; 
+        position:relative; 
+        display:inline-block; 
+        width: 49%; 
+        border: 1px solid #ffffff;
+    }
+    .number{
+        position: absolute;
+        border: 1px solid #666666;
+        background: #0617ff26;
+        border-radius: 5px;
+        padding: 5px;
+        left: 0;
+        right: 0;
+        width: fit-content;
+        margin: auto;
+        margin-top: 10px;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: cursive;
+        z-index: 1;
+    }
+    .number.left{left: 100px;}
+    .number.right{right: 100px;}
+    #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        text-align: center;
+        z-index: 1;
+    }
+
+    .modalinfo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: black;
+        font-family: math;
+    }
+    .modalinfo span{
+        color: #1500ff;
+    }
+
+    .close{
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+        border: 0;
+        font-size: 20px;
+        font-weight: 800;
+    }
+    /* .modalbutton{position: absolute;right:30px;} */
+    .copy{padding: 5px;}
+    .left{float: left;}
+    .right{float: right;}
+    .right img{width: 13px; height: auto; margin-right: 5px;}
+    .crono{
+        position: absolute;
+        border: 1px solid #666666;
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 5px;
+        left: 18px;
+        width: fit-content;
+        margin: auto;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: cursive;
+        z-index: 1;
+        bottom: 18px;  
+    }
+    .boton{display:inline-block;width:18px;height:18px;position:relative; vertical-align: middle;}
+    .start{background:url('https://i.ibb.co/WDTn0Xh/start.png') 0 0 no-repeat; background-size: contain;}
+    .stop{background:url('https://i.ibb.co/1srKKd0/pause.png') 0 0 no-repeat; background-size: contain;}
+    .reiniciar{background:url('https://i.ibb.co/CwwLDJG/delete.png')0 0 no-repeat; background-size: contain;}
+    .land{
+        display: inline-block;
+    }
+    .land input[type=number]{
+        width: 58px;
+        padding: 5px 0px 5px 5px;
+        font-size: 14px;
+        font-weight: 800;
+    }
+    .botonera button{
+        background: #622aff;
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 800;
+        margin-top: 10px;
+        margin-right: 5px;
+    }
+
+</style>
+<body>
+    <div class="copy">
+        <div class="left">Tracking Land</div>
+        <div class="right">Donaciones Ronin Wallet <img src="https://katana.roninchain.com/static/media/ron.98041023.svg" alt="">0x0e7405e0a13eae6c1490601f814a74d456f0f4f6</div></div>
+    <br>
+        <label for="parametro1">Lands: </label>
+        <div class="land">
+            <label>Bloquear:<input type="checkbox" id="check1"></label>
+            <br>
+            <input type="number" id="parametro1" name="parámetro1">
+        </div>
+        <div class="land">
+            <label>Bloquear:<input type="checkbox" id="check2"></label><br>
+            <input type="number" id="parametro2" name="parámetro2">
+        </div>
+        
+        <div class="land">
+            <label>Bloquear:<input type="checkbox" id="check3"></label><br>
+            <input type="number" id="parametro3" name="parámetro3">
+        </div>
+        
+        <div class="land">
+            <label>Bloquear:<input type="checkbox" id="check4"></label><br>
+            <input type="number" id="parametro4" name="parámetro4">
+        </div>
+        <div class="botonera">
+            <button id="buscar">Buscar</button>
+            <button id="actualizar">Actualizar</button>
+            <button id="next">Siguientes</button>
+            <button id="back">Anteriores</button>
+            <button id="random">Aleatorios</button>
+            <button onclick="openModal()">Instruciones</button>
+        </div>
+    <hr>
+
+    <div class="iframeDiv">
+        <div class="number" id="number1" onclick="copy(event)"></div>
+        <div class="crono">
+            <input type="time" id="time1" class="time" value="00:00">
+            <div class="boton start"></div>
+            <div class="boton stop"></div>
+        </div>
+        <iframe width="100%" height="100%" id="resultadoIframe1"
+            src=""
+            frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+        </iframe>
+    </div>
+    <div class="iframeDiv">
+        <div class="number" id="number2" onclick="copy(event)"></div>
+        <div class="crono">
+            <input type="time" id="time2" class="time" value="00:00">
+            <div class="boton start"></div>
+            <div class="boton stop"></div>
+        </div>
+        <iframe width="100%" height="100%" id="resultadoIframe2"
+            src=""
+            frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+        </iframe>
+    </div>
+    <div class="iframeDiv">
+        <div class="number" id="number3" onclick="copy(event)"></div>
+        <div class="crono">
+            <input type="time" id="time3" class="time" value="00:00">
+            <div class="boton start"></div>
+            <div class="boton stop"></div>
+        </div>
+        <iframe width="100%" height="100%" id="resultadoIframe3"
+            src=""
+            frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+        </iframe>
+    </div>
+    <div class="iframeDiv">
+        <div class="number" id="number4" onclick="copy(event)"></div>
+        <div class="crono">
+            <input type="time" id="time4" class="time" value="00:00">
+            <div class="boton start"></div>
+            <div class="boton stop"></div>
+        </div>
+        <iframe width="100%" height="100%" id="resultadoIframe4"
+            src=""
+            frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0">
+        </iframe>
+    </div>
+    <!-- <iframe id="resultadoIframe" src="" frameborder="0"></iframe> -->
+    
+    <script src="script/script.js"></script>
+
+    <div class="modal" id="modal">
+        <div class="modalinfo">
+            <button onclick="closeModal()" class="close">X</button>
+            <h1>Información de uso</h1>
+            <hr>
+            <span>1.- Boton Buscar:</span>
+            <p>
+                Buscas las islas anotadas, 
+                si cambias solo un numero de isla solo actualizara ese isla las otras 3 quedaran igual
+            </p>
+            <span>2.- Boton Actualizar</span>
+            
+            <p>
+                Actualiza las islas nuevamente, esto es por que a veces el juego deja de enviar la informacion de la isla en tiempo real
+            </p>
+            <span>3.- Botones Siguientes y Anteriores</span>
+            
+            <p>
+                Su uso es para ir recoriendo las islas Ejemplo tienes en tracking las islas 10,11,12,13 al darle al boton de siguiente las cambiara por las islas 14,15,16,17 igual con el boton de anterior viajando a las islas 6,7,8,9
+            </p>
+            <span>4.- Boton Aleatorios</span>
+            
+            <p>
+                Este buscas islas aleatorias, si deseas que una de esta isla no cambia puedes bloquearla con el Check de bloquear<input type="checkbox"> de esa isla y solo cambiara aquellas que no estan bloqueadas.
+            </p>
+            <hr>
+            Este proyecto siempre sera gratuito. <br>
+            Si deseas ayudar con una donación para mejorar el proyecto.
+            <br> <br>
+            Esta es mi Ronins Wallet <span>0x0e7405e0a13eae6c1490601f814a74d456f0f4f6</span> 
+            <br> <br>
+            
+            <br> <br>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</body>
+</html>
